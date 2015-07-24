@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>WebAudio API player</title>
+	<link rel="stylesheet/less" type="text/css" href="less/style.less" />
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js" data-async="true"></script>
+	<script src="https://yastatic.net/jquery/2.1.4/jquery.min.js"></script>
+	<script src="js/jdataview.js"></script>
+	<script src="js/script.js"></script>
+</head>
+<body>
+	<img src="img/logo.png" />
+	<section class="player player_closed player_hidden">
+		<header class="player_shell player_shell_top">
+			<div class="player_plate player_plate_top"></div>
+			<div class="player_plate player_plate_right"></div>
+			<div class="player_plate player_plate_left"></div>
+			<div class="player_plate player_plate_bottom"></div>
+		</header>
+		<section class="player_inside">
+			<div class="player_screen">
+				<div class="player_output player_add" data-output="add">
+					<input type="file" accept="audio/*" multiple class="input_file"/>
+				</div>
+				<div class="player_output" data-output="tracks">
+					<ul class="list list_tracks"></ul>
+				</div>
+				<div class="player_output" data-output="metadata">
+					<ul class="list list_metadata"></ul>
+				</div>
+				<div class="player_output" data-output="analyser">
+					<i class="control control_analyser"></i>
+					<canvas id="analyser" class="analyser"></canvas>
+				</div>
+				<div class="player_output player_equalizer" data-output="equalizer">
+					<i class="control_equalizer control_active" data-style="normal">Normal</i>
+					<i class="control_equalizer" data-style="classic">Classic</i>
+					<i class="control_equalizer" data-style="pop">Pop</i>
+					<i class="control_equalizer" data-style="rock">Rock</i>
+					<i class="control_equalizer" data-style="techno">Techno</i>
+					<input type="range" class="input_range input_equalizer" min="-40" max="40" step="0.01" value="0" />
+					<input type="range" class="input_range input_equalizer" min="-40" max="40" step="0.01" value="0" />
+					<input type="range" class="input_range input_equalizer" min="-40" max="40" step="0.01" value="0" />
+					<input type="range" class="input_range input_equalizer" min="-40" max="40" step="0.01" value="0" />
+					<input type="range" class="input_range input_equalizer" min="-40" max="40" step="0.01" value="0" />
+					<input type="range" class="input_range input_equalizer" min="-40" max="40" step="0.01" value="0" />
+					<input type="range" class="input_range input_equalizer" min="-40" max="40" step="0.01" value="0" />
+					<input type="range" class="input_range input_equalizer" min="-40" max="40" step="0.01" value="0" />
+					<input type="range" class="input_range input_equalizer" min="-40" max="40" step="0.01" value="0" />
+					<input type="range" class="input_range input_equalizer" min="-40" max="40" step="0.01" value="0" />
+				</div>
+			</div>
+			<div class="player_panel">
+				<span class="button button_add" data-output="add"></span>
+				<span class="button button_tracks" data-output="tracks"></span>
+				<span class="button button_analyser" data-output="analyser"></span>
+				<span class="button button_equalizer" data-output="equalizer"></span>
+			</div>
+			<div class="player_panel">
+				<span class="button button_play button_disabled"></span>
+				<span class="button button_prev button_disabled"></span>
+				<span class="button button_next button_disabled"></span>
+				<input type="range" class="input_range input_gain" min="0" max="3" step="0.1" value="0" />
+			</div>
+		</section>
+		<footer class="player_shell player_shell_bottom">
+			<div class="player_plate player_plate_top"></div>
+			<div class="player_plate player_plate_right"></div>
+			<div class="player_plate player_plate_left"></div>
+			<div class="player_plate player_plate_bottom"></div>
+		</footer>
+	</section>
+</body>
+</html>

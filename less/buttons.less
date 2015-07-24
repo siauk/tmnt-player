@@ -1,0 +1,81 @@
+.button {
+	display: inline-block;
+	width: (@width-player - 94px) / 4;
+	margin-right: 10px;
+	border: 3px solid @color-border;
+	border-radius: 20px;
+	background-color: #b9021e;
+	font: 20px/1 'FontAwesome', sans-serif;
+	text-align: center;
+	cursor: pointer;
+
+	&:last-child {
+		margin-right: 0;
+	}
+	&:hover {
+		background-color: darken(#b9021e, 10%);
+	}
+}
+.button_add {
+	&:after {
+		content: '\f067';
+	}
+}
+.button_tracks {
+	background-color: #58cc24;
+
+	&:after {
+		content: '\f0ca';
+	}
+	&:hover {
+		background-color: darken(#58cc24, 10%);
+	}
+}
+.button_analyser {
+	background-color: #fff;
+
+	&:after {
+		content: '\f012';
+	}
+	&:hover {
+		background-color: darken(#fff, 20%);
+	}
+}
+.button_equalizer {
+	background-color: #d2bf11;
+
+	&:after {
+		content: '\f1de';
+	}
+	&:hover {
+		background-color: darken(#d2bf11, 10%);
+	}
+}
+.button_play {
+	&:after {
+		content: '\f04b';
+	}
+}
+.button_pause {
+	&:after {
+		content: '\f04c';
+	}
+}
+.button_prev {
+	&:after {
+		content: '\f049';
+	}
+}
+.button_next {
+	&:after {
+		content: '\f050';
+	}
+}
+.button_disabled {
+	background-color: @color-disabled;
+	cursor: default;
+
+	&:hover {
+		background-color: @color-disabled;
+	}
+}

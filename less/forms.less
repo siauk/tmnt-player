@@ -1,0 +1,78 @@
+.input_file {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+.input_load {
+	z-index: -1;
+}
+.input_range {
+	display: inline-block;
+	vertical-align: top;
+	margin: 0;
+	background-color: transparent;
+	-webkit-appearance: none;
+
+	&:focus {
+		outline: none;
+	}
+	&::-webkit-slider-thumb {
+		-webkit-appearance: none;
+	}
+	&::-webkit-slider-runnable-track {
+		width: 100%;
+		height: 10px;
+		border: 3px solid @color-border;
+		border-radius: 5px;
+		background-color: darken(#fff, 20%);
+		cursor: pointer;
+	}
+	&::-webkit-slider-thumb {
+		width: 20px;
+		height: 20px;
+		margin-top: -9px;
+		border: 3px solid @color-border;
+		border-radius: 20px;
+		background: #fff;
+		cursor: pointer;
+	}
+	&::-moz-range-track {
+		width: 100%;
+		height: 4px;
+		border: 3px solid @color-border;
+		border-radius: 7px;
+		background-color: darken(#fff, 20%);
+		cursor: pointer;
+	}
+	&::-moz-range-thumb {
+		width: 14px;
+		height: 14px;
+		margin-top: -7px;
+		border: 3px solid @color-border;
+		border-radius: 20px;
+		background: #fff;
+		cursor: pointer;
+	}
+}
+.input_equalizer {
+	width: @height-equalizer;
+	height: 0;
+	position: absolute;
+	bottom: @height-equalizer / 2 + 10px;
+	.position(0);
+	.rotate(-90deg);
+}
+.position(@i) when (@i < 11) {
+	&:nth-of-type(@{i}) {
+		left: -@height-equalizer / 2 + @i * 23;
+	}
+	.position((@i + 1));
+}
+.input_gain {
+	width: (@width-player - 94px) / 4;
+	height: 26px;
+}

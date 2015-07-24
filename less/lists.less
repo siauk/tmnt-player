@@ -1,0 +1,31 @@
+.list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		height:  @height-screen / 5;
+		padding: 0 5px;
+		line-height: @height-screen / 5 - 5px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+.list_tracks {
+	li {
+		position: relative;
+
+		&:hover {
+			padding-right: 50px;
+
+			.control_remove,
+			.control_info {
+				display: block;
+			}
+		}
+	}
+}
+.list_item_active {
+	background-color: darken(@color-screen, 10%);
+}
