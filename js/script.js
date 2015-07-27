@@ -20,7 +20,7 @@ $(document).ready(function(){
 							{ caption: '2003 TMNT ENG.mp3', url: 'tracks/2003 TMNT ENG.mp3' },
 							{ caption: '2003 TMNT RUS.mp3', url: 'tracks/2003 TMNT RUS.mp3' },
 							{ caption: '2012 TMNT ENG.mp3', url: 'tracks/2012 TMNT ENG.mp3' },
-							{ caption: '2012 TMNT RUS.mp3', url: 'tracks/2012 TMNT RUS.mp3' },
+							{ caption: '2012 TMNT RUS.mp3', url: 'tracks/2012 TMNT RUS.mp3' }
 						];
 
 						$.each(files, function(){
@@ -43,7 +43,12 @@ $(document).ready(function(){
 						methods.player.disabled();
 
 						$.each(files, function() {
-							methods.tracks.read(this);
+							if(vars.isOpera && (this.type === 'audio/mp3' || this.type === 'audio/mpeg')) {
+								alert('This audio type is not supported in Opera');
+								methods.player.interrupted();
+							} else {
+								methods.tracks.read(this);
+							}
 						});
 					},
 					read: function(file){
@@ -76,11 +81,11 @@ $(document).ready(function(){
 
 						track.buffer = buffer;
 						track.onended = function(){
-							if(vars.index !== vars.tracks.length - 1) {
-								methods.tracks.toggle(vars.index, ++vars.index);
-							} else {
-								methods.tracks.create(index, vars.buffers[index]);
+							if(vars.index === vars.tracks.length - 1) {
+								methods.tracks.create(vars.index, vars.buffers[vars.index]);
 								methods.player.pause();
+							} else {
+								methods.tracks.toggle(vars.index, ++vars.index);
 							}
 						};
 						track = methods.tracks.connect(track);
@@ -143,6 +148,7 @@ $(document).ready(function(){
 						} else if(index === vars.index){
 							if(vars.tracks.length === 1) {
 								methods.tracks.pause(index);
+								nodes.buttons.filter('.button_play').addClass('button_disabled');
 							}else if(index === vars.tracks.length - 1) {
 								methods.tracks.toggle(index, --vars.index);
 							} else {
@@ -371,6 +377,13 @@ $(document).ready(function(){
 
 						methods.player.navigation();
 					},
+					interrupted: function(){
+						nodes.output.filter('[data-output="add"]').removeClass('player_load');
+						nodes.inputFile.removeClass('input_load');
+						nodes.buttons.filter(':not(.button_play)').removeClass('button_disabled');
+
+						methods.player.navigation();
+					},
 					play: function(){
 						nodes.buttons.filter('.button_play')
 							.removeClass('button_play')
@@ -467,6 +480,8 @@ $(document).ready(function(){
 					methods.events();
 
 					nodes.player.removeClass('player_hidden');
+
+					vars.isOpera = navigator.userAgent.indexOf(' OPR/') >= 0;
 				} catch(e) {
 					alert('Web Audio API is not supported in this browser');
 				}
