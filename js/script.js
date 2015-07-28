@@ -44,7 +44,7 @@ $(document).ready(function(){
 								methods.player.interrupted();
 							} else {
 								vars.files.push(this);
-								methods.tracks.read(vars.files[vars.files.length-1]);
+								methods.tracks.read(this);
 							}
 						});
 					},
