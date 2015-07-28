@@ -36,9 +36,6 @@ body {
 .player_closed .player_inside {
 	height: 0;
 }
-.player_hidden {
-	visibility: hidden;
-}
 .player_shell {
 	width: 350px;
 	height: 150px;
