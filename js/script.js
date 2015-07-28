@@ -43,8 +43,8 @@ $(document).ready(function(){
 								alert('This audio type is not supported in Opera');
 								methods.player.interrupted();
 							} else {
-								vars.files.push(this);
 								methods.tracks.read(this);
+								vars.files.push(this);
 							}
 						});
 					},
