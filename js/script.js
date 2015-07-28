@@ -43,7 +43,8 @@ $(document).ready(function(){
 								alert('This audio type is not supported in Opera');
 								methods.player.interrupted();
 							} else {
-								methods.tracks.read(this);
+								vars.files.push(this);
+								methods.tracks.read(vars.files[vars.files.length-1]);
 							}
 						});
 					},
@@ -53,19 +54,18 @@ $(document).ready(function(){
 						reader.readAsArrayBuffer(file);
 
 						reader.onload = function() {
-							file = methods.tracks.metadata(this.result, file);
-
-							methods.tracks.decode(this.result);
-							methods.player.add(file);
-							vars.files.push(file);
+							file = methods.tracks.metadata(file, this.result);
+							methods.tracks.decode(file, this.result);
 						};
 					},
-					decode: function(result){
+					decode: function(file, result){
 						vars.context.decodeAudioData(result, function(buffer) {
 							var index = vars.tracks.length;
 
 							methods.tracks.create(index, buffer);
 							vars.buffers[index] = buffer;
+
+							methods.player.add(file);
 
 							if(vars.files.length === vars.tracks.length) {
 								methods.player.enabled();
@@ -97,7 +97,7 @@ $(document).ready(function(){
 
 						return track;
 					},
-					metadata: function(result, file){
+					metadata: function(file,result){
 						var data = new jDataView(result);
 
 						file.title = '';
