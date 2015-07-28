@@ -37,7 +37,9 @@ $(document).ready(function(){
 						};
 					},
 					add: function(files, byDefault){
-						methods.player.disabled();
+						if(!byDefault) {
+							methods.player.disabled();
+						}
 
 						$.each(files, function() {
 							if(vars.isOpera && (this.type === 'audio/mp3' || this.type === 'audio/mpeg')) {

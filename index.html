@@ -20,8 +20,8 @@
 		</header>
 		<section class="player_inside">
 			<div class="player_screen">
-				<div class="player_output player_add" data-output="add">
-					<input type="file" accept="audio/*" multiple class="input_file"/>
+				<div class="player_output player_add player_load" data-output="add">
+					<input type="file" accept="audio/*" multiple class="input_file input_load"/>
 				</div>
 				<div class="player_output" data-output="tracks">
 					<ul class="list list_tracks"></ul>
@@ -52,10 +52,10 @@
 				</div>
 			</div>
 			<div class="player_panel">
-				<span class="button button_add" data-output="add"></span>
-				<span class="button button_tracks" data-output="tracks"></span>
-				<span class="button button_analyser" data-output="analyser"></span>
-				<span class="button button_equalizer" data-output="equalizer"></span>
+				<span class="button button_add button_disabled" data-output="add"></span>
+				<span class="button button_tracks button_disabled" data-output="tracks"></span>
+				<span class="button button_analyser button_disabled" data-output="analyser"></span>
+				<span class="button button_equalizer button_disabled" data-output="equalizer"></span>
 			</div>
 			<div class="player_panel">
 				<span class="button button_play button_disabled"></span>
