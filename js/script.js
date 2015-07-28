@@ -21,7 +21,6 @@ $(document).ready(function(){
 
 						$.each(files, function(){
 							methods.tracks.load(this);
-							vars.files.push(this);
 						});
 					},
 					load: function(file){
@@ -34,6 +33,7 @@ $(document).ready(function(){
 						request.onload = function() {
 							request.response.caption = file.caption;
 							methods.tracks.add([request.response], true);
+							vars.files.push(request.response);
 						};
 					},
 					add: function(files, byDefault){
@@ -58,7 +58,7 @@ $(document).ready(function(){
 
 						reader.readAsArrayBuffer(file);
 
-						reader.onload = function() {
+						reader.onload = function(){
 							file = methods.tracks.metadata(file, this.result);
 							methods.tracks.decode(file, this.result);
 						};
@@ -68,7 +68,7 @@ $(document).ready(function(){
 							var index = vars.tracks.length;
 
 							methods.tracks.create(index, buffer);
-							vars.buffers[index] = buffer;
+							vars.buffers.push(buffer);
 
 							methods.player.add(file);
 
@@ -91,7 +91,7 @@ $(document).ready(function(){
 						};
 						track = methods.tracks.connect(track);
 
-						vars.tracks[index] =  track;
+						vars.tracks[index] = track;
 						console.log(vars.tracks);
 					},
 					connect: function(track){
@@ -102,7 +102,7 @@ $(document).ready(function(){
 
 						return track;
 					},
-					metadata: function(file,result){
+					metadata: function(file, result){
 						var data = new jDataView(result);
 
 						file.title = '';
@@ -125,7 +125,7 @@ $(document).ready(function(){
 						if(track.isStart) {
 							methods.tracks.connect(track);
 						} else {
-							track.start();
+							track.start(0);
 							track.isStart = true;
 
 							if(!vars.interval) {
@@ -321,7 +321,7 @@ $(document).ready(function(){
 						vars.filters[vars.filters.length - 1].connect(vars.analyser);
 						vars.filters[vars.filters.length - 1].connect(vars.context.destination);
 					},
-					change: function(index){
+					change: function(){
 						vars.filters[nodes.filters.index(this)].gain.value = this.value;
 					},
 					toggle: function(){
@@ -352,11 +352,7 @@ $(document).ready(function(){
 						nodes.buttons = nodes.player.find('.button');
 					},
 					slide: function(){
-						if(nodes.player.hasClass('player_closed')) {
-							nodes.player.removeClass('player_closed');
-						} else {
-							nodes.player.addClass('player_closed');
-						}
+						nodes.player.toggleClass('player_closed');
 					},
 					toggle: function(){
 						var output = $(this).data('output');
