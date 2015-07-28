@@ -16,8 +16,7 @@ $(document).ready(function(){
 					default: function(){
 						var files = [
 							{ caption: '1987 TMNT ENG.mp3', url: 'tracks/1987 TMNT ENG.mp3' },
-							{ caption: '1987 TMNT RUS.mp3', url: 'tracks/1987 TMNT RUS.mp3' },
-							{ caption: '1987 TMNT ENG.wav', url: 'tracks/1987 TMNT ENG.wav' }
+							{ caption: '1987 TMNT RUS.mp3', url: 'tracks/1987 TMNT RUS.mp3' }
 						];
 
 						$.each(files, function(){
