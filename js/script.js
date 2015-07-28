@@ -21,6 +21,7 @@ $(document).ready(function(){
 
 						$.each(files, function(){
 							methods.tracks.load(this);
+							vars.files.push(this);
 						});
 					},
 					load: function(file){
@@ -32,10 +33,10 @@ $(document).ready(function(){
 
 						request.onload = function() {
 							request.response.caption = file.caption;
-							methods.tracks.add([request.response]);
+							methods.tracks.add([request.response], true);
 						};
 					},
-					add: function(files){
+					add: function(files, byDefault){
 						methods.player.disabled();
 
 						$.each(files, function() {
@@ -44,7 +45,9 @@ $(document).ready(function(){
 								methods.player.interrupted();
 							} else {
 								methods.tracks.read(this);
-								vars.files.push(this);
+								if(!byDefault) {
+									vars.files.push(this);
+								}
 							}
 						});
 					},
