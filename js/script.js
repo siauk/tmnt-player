@@ -17,10 +17,7 @@ $(document).ready(function(){
 						var files = [
 							{ caption: '1987 TMNT ENG.mp3', url: 'tracks/1987 TMNT ENG.mp3' },
 							{ caption: '1987 TMNT RUS.mp3', url: 'tracks/1987 TMNT RUS.mp3' },
-							{ caption: '2003 TMNT ENG.mp3', url: 'tracks/2003 TMNT ENG.mp3' },
-							{ caption: '2003 TMNT RUS.mp3', url: 'tracks/2003 TMNT RUS.mp3' },
-							{ caption: '2012 TMNT ENG.mp3', url: 'tracks/2012 TMNT ENG.mp3' },
-							{ caption: '2012 TMNT RUS.mp3', url: 'tracks/2012 TMNT RUS.mp3' }
+							{ caption: '1987 TMNT ENG.wav', url: 'tracks/1987 TMNT ENG.wav' }
 						];
 
 						$.each(files, function(){
@@ -478,8 +475,6 @@ $(document).ready(function(){
 					methods.player.prepare();
 					methods.tracks.default();
 					methods.events();
-
-					nodes.player.removeClass('player_hidden');
 
 					vars.isOpera = navigator.userAgent.indexOf(' OPR/') >= 0;
 				} catch(e) {
